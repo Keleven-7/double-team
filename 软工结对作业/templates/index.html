@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sudoku Generator</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        .sudoku-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .sudoku {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border-style: solid; /* 设置边框样式为实线 */
+            border-width: 1px; /* 设置边框宽度为1像素 */
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        td:nth-child(3n+1) { /* 每一行第一个小格子，左边界线加粗 */
+            border-left-width: 2px;
+        }
+
+        td:nth-child(3n) { /* 每一行最后一个小格子，右边界线加粗 */
+            border-right-width: 2px;
+        }
+
+        tr:nth-child(3n+1) td { /* 每一列第一个小格子，上边界线加粗 */
+            border-top-width: 2px;
+        }
+
+        tr:nth-child(3n) td { /* 每一列最后一个小格子，下边界线加粗 */
+            border-bottom-width: 2px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sudoku Generator</h1>
+    <button onclick="generateSudoku()">Generate Sudoku</button>
+    <div class="sudoku-container">
+        {% for sudoku in sudokus %}
+        <div class="sudoku">
+            <h2>Sudoku {{ loop.index }}</h2>
+            <table>
+                {% for row in sudoku %}
+                <tr>
+                    {% for num in row %}
+                    <td>{{ num if num != 0 else '' }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function generateSudoku() {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
